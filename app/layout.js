@@ -7,7 +7,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { dark } from "@clerk/themes";
 import Footer from "@/components/footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  fallback: ['system-ui', 'arial']
+});
 
 export const metadata = {
   title: "AImpress",
@@ -16,6 +20,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="en" suppressHydrationWarning>
         <head>
           <link rel="icon" href="/logo.png" sizes="any" />
@@ -34,5 +43,6 @@ export default function RootLayout({ children }) {
           </ThemeProvider>
         </body>
       </html>
+    </ClerkProvider>
   );
 }
